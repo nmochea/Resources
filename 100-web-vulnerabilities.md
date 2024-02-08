@@ -2,8 +2,10 @@
 
 ## InjectionExploits bilities:
 1. SQL Injection (SQLi)
-2. Cross-Site Scripting (XSS) 3. Cross-Site Request Forgery (CSRF)
-4. Remote Code Execution (RCE) 5. Command Injection
+2. Cross-Site Scripting (XSS)
+3. Cross-Site Request Forgery (CSRF)
+4. Remote Code Execution (RCE)
+5. Command Injection
 6. XML I n j e c t i o n
 7. LDAP Injection
 8. XPath Injection
