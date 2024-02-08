@@ -6,7 +6,7 @@
 3. Cross-Site Request Forgery (CSRF)
 4. Remote Code Execution (RCE)
 5. Command Injection
-6. XML I n j e c t i o n
+6. XML Injection
 7. LDAP Injection
 8. XPath Injection
 9. HTML Injection
