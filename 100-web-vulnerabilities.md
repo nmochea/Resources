@@ -142,4 +142,4 @@ IoT Web Vulnerabilities:
 ## Zero-Day Vulnerabilities:
 98. Unknown Vulnerabilities
 99. Unpatched Vulnerabilities
-100. 100. Day-Zero Exploits
+100. Day-Zero Exploits
