@@ -1,6 +1,6 @@
 # 100 Vulnerabilities List
 
-## InjectionExploits bilities:
+## Injection:
 1. SQL Injection (SQLi)
 2. Cross-Site Scripting (XSS)
 3. Cross-Site Request Forgery (CSRF)
