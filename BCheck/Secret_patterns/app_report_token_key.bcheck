@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "app_report_token_key"
+  description: "Looks for app_report_token_key regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "app[_-]?report[_-]?token[_-]?key(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "app_report_token_key regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

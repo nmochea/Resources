@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "algolia_admin_key_2"
+  description: "Looks for algolia_admin_key_2 regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "algolia[_-]?admin[_-]?key[_-]?2(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "algolia_admin_key_2 regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

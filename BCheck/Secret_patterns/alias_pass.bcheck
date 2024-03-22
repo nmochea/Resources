@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "alias_pass"
+  description: "Looks for alias_pass regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "alias[_-]?pass(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "alias_pass regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

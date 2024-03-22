@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "anaconda_token"
+  description: "Looks for anaconda_token regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "anaconda[_-]?token(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "anaconda_token regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

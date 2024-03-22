@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "aws_config_accesskeyid"
+  description: "Looks for aws_config_accesskeyid regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "aws[_-]?config[_-]?accesskeyid(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "aws_config_accesskeyid regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if
