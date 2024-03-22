@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "PayPal Braintree Access Token"
+  description: "Looks for PayPal Braintree Access Token regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}" then
+     report issue:
+       severity: info
+       confidence: high
+       detail: "PayPal Braintree Access Token regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

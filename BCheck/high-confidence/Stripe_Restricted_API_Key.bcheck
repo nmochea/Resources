@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "Stripe Restricted API Key"
+  description: "Looks for Stripe Restricted API Key regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "rk_live_[0-9a-zA-Z]{24}" then
+     report issue:
+       severity: info
+       confidence: high
+       detail: "Stripe Restricted API Key regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

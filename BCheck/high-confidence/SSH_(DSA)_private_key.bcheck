@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "SSH (DSA) private key"
+  description: "Looks for SSH (DSA) private key regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "-----BEGIN DSA PRIVATE KEY-----" then
+     report issue:
+       severity: info
+       confidence: high
+       detail: "SSH (DSA) private key regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "Telegram Bot API Key"
+  description: "Looks for Telegram Bot API Key regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "[0-9]+:AA[0-9A-Za-z\\-_]{33}" then
+     report issue:
+       severity: info
+       confidence: high
+       detail: "Telegram Bot API Key regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

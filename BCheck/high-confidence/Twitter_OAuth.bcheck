@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "Twitter OAuth"
+  description: "Looks for Twitter OAuth regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "[tT][wW][iI][tT][tT][eE][rR].*['|"][0-9a-zA-Z]{35,44}['|"]" then
+     report issue:
+       severity: info
+       confidence: high
+       detail: "Twitter OAuth regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

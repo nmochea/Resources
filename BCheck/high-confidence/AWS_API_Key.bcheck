@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "AWS API Key"
+  description: "Looks for AWS API Key regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "AKIA[0-9A-Z]{16}" then
+     report issue:
+       severity: info
+       confidence: high
+       detail: "AWS API Key regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

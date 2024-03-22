@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "MailChimp API Key"
+  description: "Looks for MailChimp API Key regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "[0-9a-f]{32}-us[0-9]{1,2}" then
+     report issue:
+       severity: info
+       confidence: high
+       detail: "MailChimp API Key regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

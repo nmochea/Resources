@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "Facebook OAuth"
+  description: "Looks for Facebook OAuth regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "[fF][aA][cC][eE][bB][oO][oO][kK].*['|"][0-9a-f]{32}['|"]" then
+     report issue:
+       severity: info
+       confidence: high
+       detail: "Facebook OAuth regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if
