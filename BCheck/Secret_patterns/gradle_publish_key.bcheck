@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "gradle_publish_key"
+  description: "Looks for gradle_publish_key regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "gradle[_-]?publish[_-]?key(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "gradle_publish_key regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

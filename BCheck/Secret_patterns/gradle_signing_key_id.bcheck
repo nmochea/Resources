@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "gradle_signing_key_id"
+  description: "Looks for gradle_signing_key_id regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "gradle[_-]?signing[_-]?key[_-]?id(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "gradle_signing_key_id regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

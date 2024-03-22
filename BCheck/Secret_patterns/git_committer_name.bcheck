@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "git_committer_name"
+  description: "Looks for git_committer_name regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "git[_-]?committer[_-]?name(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "git_committer_name regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

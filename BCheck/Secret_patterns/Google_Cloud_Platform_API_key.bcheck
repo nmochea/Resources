@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "Google Cloud Platform API key"
+  description: "Looks for Google Cloud Platform API key regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "(google|gcp|youtube|drive|yt)(.{0,20})?['"][AIza[0-9a-z-_]{35}]['"]" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "Google Cloud Platform API key regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if
