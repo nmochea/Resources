@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "contentful_management_api_access_token_new"
+  description: "Looks for contentful_management_api_access_token_new regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "contentful[_-]?management[_-]?api[_-]?access[_-]?token[_-]?new(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "contentful_management_api_access_token_new regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

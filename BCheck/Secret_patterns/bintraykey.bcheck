@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "bintraykey"
+  description: "Looks for bintraykey regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "bintraykey(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "bintraykey regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

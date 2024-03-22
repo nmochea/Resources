@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "cloudant_service_database"
+  description: "Looks for cloudant_service_database regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "cloudant[_-]?service[_-]?database(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "cloudant_service_database regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

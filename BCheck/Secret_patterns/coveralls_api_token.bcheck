@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "coveralls_api_token"
+  description: "Looks for coveralls_api_token regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "coveralls[_-]?api[_-]?token(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "coveralls_api_token regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

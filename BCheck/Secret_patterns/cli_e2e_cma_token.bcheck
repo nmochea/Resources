@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "cli_e2e_cma_token"
+  description: "Looks for cli_e2e_cma_token regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "cli[_-]?e2e[_-]?cma[_-]?token(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "cli_e2e_cma_token regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if

@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "cattle_agent_instance_auth"
+  description: "Looks for cattle_agent_instance_auth regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "cattle[_-]?agent[_-]?instance[_-]?auth(=| =|:| :)" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "cattle_agent_instance_auth regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if
