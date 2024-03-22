@@ -1,0 +1,15 @@
+metadata:
+  language: v1-beta
+  name: "WP-Config"
+  description: "Looks for WP-Config regex in page source."
+  author: "@nmochea"
+  tags: "nmochea", "token", "exposure"
+
+given response then
+  if {latest.response} matches "define(.{0,20})?(DB_CHARSET|NONCE_SALT|LOGGED_IN_SALT|AUTH_SALT|NONCE_KEY|DB_HOST|DB_PASSWORD|AUTH_KEY|SECURE_AUTH_KEY|LOGGED_IN_KEY|DB_NAME|DB_USER)(.{0,20})?[\'|\"].{10,120}[\'|\"]" then
+     report issue:
+       severity: info
+       confidence: tentative
+       detail: "WP-Config regex found in page."
+       remediation: "Review and remove unnecessary exposure of keys and/or sensitive data from page source."
+  end if
